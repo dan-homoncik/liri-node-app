@@ -22,24 +22,36 @@ switch (userAction) {
 
 	case "do-what-it-says":
 	justDoIt();
-	break;
+    break;
+    
+    // some instructions to help
+    default: console.log("\r\n" +"Try typing one of the following commands after 'node liri.js' : " +"\r\n"+
+        "1. spotify-this-song 'Song name' "+"\r\n"+
+        "2. movie-this 'Movie Name' "+"\r\n"+
+        "3. do-what-it-says"+"\r\n"+
+        "If the song name is more than one word, please place it in quotations");
 };
 
 function spotify(userQuery) {
 
 	var spotify = new Spotify(keys.spotify);
 		if (!userQuery){
-        	userQuery = 'The Sign';
+        	userQuery = "The Veldt";
     	}
-		spotify.search({ type: 'track', query: userQuery }, function(err, data) {
+		spotify.search({ type: "track", query: userQuery }, function(err, data) {
 			if (err){
-	            console.log('Error occurred: ' + err);
+	            console.log("Error occurred: " + err);
 	            return;
 	        }
 
-	        var songInfo = data.tracks.items;
-            console.log("Artist(s): " + songInfo[0].artists[0].name + "\nSong Name: " + songInfo[0].name +
-            "\nPreview Link: " + songInfo[0].preview_url + "\nAlbum: " + songInfo[0].album.name);
+            var songInfo = data.tracks.items;
+            songResults = "**********************************" +
+            "\nArtist(s): " + songInfo[0].artists[0].name + "\nSong Name: " + songInfo[0].name +
+            "\nPreview Link: " + songInfo[0].preview_url + "\nAlbum: " + songInfo[0].album.name +
+            "\n**********************************";
+
+            console.log(songResults);
+            log(songResults);
 	});
 }
 
@@ -49,23 +61,31 @@ function movie(userQuery) {
 
 	request(queryUrl, function(error, response, body) {
 		if (!userQuery){
-        	userQuery = 'Mr Nobody';
+        	userQuery = "Logan";
     	}
 		if (!error && response.statusCode === 200) {
 
-            console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year +
+            var movieResults = "**********************************" + 
+            "\nTitle: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year +
             "\nIMDB Rating: " + JSON.parse(body).imdbRating + "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value +
             "\nCountry: " + JSON.parse(body).Country + "\nLanguage: " + JSON.parse(body).Language + 
-            "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors);
-		}
+            "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors + 
+            "\n**********************************";
+
+            console.log(movieResults);
+            log(movieResults);
+		} else {
+            console.log("Error: " + error);
+            return;
+        }
 	});
 };
 
 function justDoIt() {
-	fs.readFile('random.txt', "utf8", function(error, data){
+	fs.readFile("random.txt", "utf8", function(error, data){
 
 		if (error) {
-    		return console.log(error);
+    		return console.log("Error occured: " + error);
   		}
 
 		var dataArr = data.split(",");
@@ -73,11 +93,16 @@ function justDoIt() {
 		if (dataArr[0] === "spotify-this-song") {
 			var songName = dataArr[1].slice(1, -1);
 			spotify(songName);
-		}  else if(dataArr[0] === "movie-this") {
-			var movieName = dataArr[1].slice(1, -1);
-			movie(movieName);
 		} 
 		
   	});
 
 };
+
+function log(logResults) {
+    fs.appendFile("log.txt", logResults, (error) => {
+      if(error) {
+        throw error;
+      }
+    });
+  }

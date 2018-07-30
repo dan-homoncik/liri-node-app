@@ -1,0 +1,29 @@
+**********************************
+Artist(s): deadmau5
+Song Name: The Veldt - Radio Edit
+Preview Link: https://p.scdn.co/mp3-preview/797e10747d5b56ce9dc21d0925f990a6e8f06893?cid=814549121d384a5984d4f71b66b8f174
+Album: The Veldt (feat. Chris James)
+********************************************************************
+Title: Interstellar
+Release Year: 2014
+IMDB Rating: 8.6
+Rotten Tomatoes Rating: 71%
+Country: USA, UK
+Language: English
+Plot: A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+Actors: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+********************************************************************
+Artist(s): Dr. Dre
+Song Name: Forgot About Dre
+Preview Link: null
+Album: 2001
+********************************************************************
+Title: Logan
+Release Year: 2017
+IMDB Rating: 8.1
+Rotten Tomatoes Rating: 93%
+Country: USA
+Language: English, Spanish
+Plot: In the near future, a weary Logan cares for an ailing Professor X, somewhere on the Mexican border. However, Logan's attempts to hide from the world, and his legacy, are upended when a young mutant arrives, pursued by dark forces.
+Actors: Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook
+**********************************
